@@ -6,6 +6,7 @@ Welcome to the Luxe Palate Website repository! This is a web application that al
     <li>Features</li>
     <li>Wireframe</li>
     <li>Technologies Used</li>
+    <li>Instillation</li>
     <li>MVP & Stretch Goals</li>
 </ul>
 <hr>
@@ -25,12 +26,23 @@ Responsive Design: Our website is optimized for various devices, including deskt
 
 <hr>
 <h2>Technologies Used:</h2>
-HTML
-CSS
-JavaScript
-Django
-Python
-PostgreSQL
+<ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+    <li>Django</li>
+    <li>Python</li>
+    <li>PostgreSQL</li>
+</ul>
+<hr>
+<h2>Installation</h2>
+<ul>
+    <li>git clone https://github.com/kevbrown404/Capstone_Project.git</li>
+    <li>cd capstone</li>
+    <li>pip3 install pipenv</li>
+    <li>pipenv install django</li>
+    <li>python3 manage.py runserver</li>
+</ul>
 <hr>
 <h2>MVP</h2>
 <ul>

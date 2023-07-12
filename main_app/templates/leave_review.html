@@ -1,0 +1,113 @@
+
+<h1><a href="/">Luxe Palate</a></h1>
+<html>
+<head>
+    <title>Restaurant Review Submission Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            
+        }
+        .bg {
+            position: fixed; 
+            top: -50%; 
+            left: -50%; 
+            width: 200%; 
+            height: 200%;
+            z-index: -1;
+        }
+        .bg img {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            margin: auto; 
+            min-width: 50%;
+            min-height: 50%;
+            z-index: -1;
+        }
+        .form-container {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-container label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-container input[type="text"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .form-container textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        
+        .form-container input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .form-container input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class = "bg">
+        <img src="../static/styles/luxe.png">
+    </div>
+    <div class="form-container">
+        <h2>Restaurant Review</h2>
+        <form method="post">
+            {% csrf_token %} 
+            {{form.as_p}}
+            <input type="submit" value="Submit Review">
+        </form>
+        <div class = "background-image"></div>
+    <div class = "bg">
+        <img src="../static/styles/luxe.png">
+    </div>
+    </div>
+    <div class="reviews">
+        {% for review in reviews %}
+        <a href="{% url 'leave_review' review.pk %}"></a>
+          
+            <div class="card-header">
+              <p class="card-header-title">{{review.name}}</p>
+            </div>
+          
+        </a>
+          {% empty %}
+        <article class="message">
+          <div class="message-header">
+            <p>No Reviews Yet</p>
+          </div>
+        </article>
+        {% endfor %}
+</body>
+</html>
+
