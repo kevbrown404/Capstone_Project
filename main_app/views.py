@@ -21,25 +21,21 @@ class About(TemplateView):
 class ViewMenu(TemplateView):
     template_name = "view_menu.html"
 
-class Review(CreateView):
+class LeaveReview(CreateView):
     model = Review
     fields = ['name', 'email', 'review']
-    template_name = "leave_review.html"
+    template_name = "leave_review.html" 
     success_url = "/leave_review/"
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        name = self.request.GET.get("name")
-        # If a query exists we will filter by name 
-        if name != None:
-            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
-            context["reviews"] = Review.objects.filter(name__icontains=name)
-            context["header"] = f"Searching for {name}"
-        else:
-            context["reviews"] = Review.objects.filter()
-            context["header"] = "Review"
+        context["reviews"] = Review.objects.all()
         return context
-        
+    
+    def form_valid(self, form):
+        return super(LeaveReview, self).form_valid(form)
+
+
 
 class ReservationCreate(CreateView):
     model = Reservation

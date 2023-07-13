@@ -1,5 +1,5 @@
 
-<h1><a href="/">Luxe Palate</a></h1>
+
 <html>
 <head>
     <title>Restaurant Review Submission Form</title>
@@ -11,7 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: fantasy;
             flex-direction: column;
             
         }
@@ -39,6 +39,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         
         .form-container label {
@@ -73,6 +74,14 @@
         .form-container input[type="submit"]:hover {
             background-color: #555;
         }
+        .logo {
+            text-decoration: none;
+            color: black;
+        }
+        .reviews{
+            background-color: #f8f8f8;
+           
+        }
     </style>
 </head>
 <body>
@@ -81,25 +90,27 @@
         <img src="../static/styles/luxe.png">
     </div>
     <div class="form-container">
+        <h1><a href="/" class = "logo">Luxe Palate</a></h1>
+        <hr>
         <h2>Restaurant Review</h2>
-        <form method="post">
+        <form class = "inputs" method="post">
             {% csrf_token %} 
             {{form.as_p}}
+
             <input type="submit" value="Submit Review">
         </form>
-        <div class = "background-image"></div>
-    <div class = "bg">
-        <img src="../static/styles/luxe.png">
     </div>
-    </div>
+    <h2>See Our Reviews!</h2>
+    <hr>
     <div class="reviews">
         {% for review in reviews %}
-        <a href="{% url 'leave_review' review.pk %}"></a>
+        
           
             <div class="card-header">
-              <p class="card-header-title">{{review.name}}</p>
+              <div class="review-name">{{review.name}}:</div>
+              <div class="review-comments">{{review.review}}</div>
             </div>
-          
+          <hr>
         </a>
           {% empty %}
         <article class="message">
@@ -109,5 +120,6 @@
         </article>
         {% endfor %}
 </body>
+
 </html>
 
