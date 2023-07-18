@@ -1,0 +1,20 @@
+databases:
+  - name: capstone
+    databaseName: capstone
+    user: kevinbrown
+
+services:
+  - type: web
+    name: capstone
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn capstone.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: capstone
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
